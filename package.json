@@ -1,0 +1,14 @@
+{
+  "name": "git-private",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r dotenv/config ./src/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "dotenv": "^16.0.0"
+  }
+}
