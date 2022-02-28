@@ -13,21 +13,16 @@ const publicRepositories = data
     url: html_url,
   }))
   .filter(
-    ({ visibility, url }) => visibility === "public" && url.includes(gitCredentials.auth.username)
+    ({ visibility, url }) =>
+      visibility === "public" && url.includes(gitCredentials.auth.username)
   );
 
+publicRepositories.forEach(async ({ name }) => {
+  await sleep(2000);
 
-try {
-  publicRepositories.forEach(async ({ name }) => {
-    await sleep(2000);
+  const payload = {
+    visibility: "private",
+  };
 
-    const payload = {
-      visibility: "private",
-    };
-
-    await gitAxios.patch(`repos/ismael3s/${name}`, payload);
-  });
-} catch (error) {
-  console.error(error.response.data);
-
-}
+  await gitAxios.patch(`repos/ismael3s/${name}`, payload);
+});
